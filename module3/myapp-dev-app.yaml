@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/himanshutak8/myapp-gitops.git
+    repoURL: https://github.com/himanshutak8/Learn_ArgoCD.git
     targetRevision: main
-    path: overlays/dev          # ArgoCD runs `kustomize build` on this path
+    path: module3/myapp-gitops/overlays/dev          # ArgoCD runs `kustomize build` on this path
   destination:
     server: https://kubernetes.default.svc   # your Module 1 gotcha fix — the in-cluster name
     namespace: myapp-dev

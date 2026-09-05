@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/himanshutak8/myapp-gitops.git
+    repoURL: https://github.com/himanshutak8/Learn_ArgoCD.git
     targetRevision: main
-    path: overlays/prod
+    path: module3/myapp-gitops/overlays/prod
   destination:
     server: https://kubernetes.default.svc
     namespace: myapp-prod
