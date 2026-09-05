@@ -1,0 +1,14 @@
+# overlays/dev/kustomization.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: myapp-dev
+resources:
+  - ../../base
+# name prefix so dev/prod objects never collide if you ever share a ns
+namePrefix: dev-
+patches:
+  - path: replicas-patch.yaml
+# dev tracks a different image tag than prod (the whole point of promotion)
+images:
+  - name: nginx
+    newTag: "1.27.0"
