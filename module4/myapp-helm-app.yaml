@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: myapp-helm
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/himanshutak8/Learn_ArgoCD.git
+    targetRevision: main
+    path: module4/myapp_chart      # Argo sees Chart.yaml here -> renders with `helm template`
+    helm:
+      valueFiles:
+        - values.yaml              # relative to the chart path above
+      parameters:
+        - name: replicaCount       # override hatch -> proves parameters beat values.yaml
+          value: "2"
+  destination:
+    server: https://kubernetes.default.svc   # in-cluster (the Module 1 gotcha)
+    namespace: myapp-helm
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true       # auto-create the myapp-helm namespace

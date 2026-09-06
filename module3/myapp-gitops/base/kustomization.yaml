@@ -3,3 +3,15 @@ kind: Kustomization
 resources:
   - deployment.yaml
   - service.yaml
+# labels applied to every resource (and propagated into selectors)
+labels:
+  - pairs:
+      app.kubernetes.io/name: myapp
+    includeSelectors: true
+# central place to manage the image — overlays override the tag
+images:
+  - name: nginx
+    newTag: "1.27.0"
+
+# Key concept: the images: transformer means you never hand-edit the image string inside deployment.yaml again. 
+# Kustomize finds any container using image nginx and swaps the tag. This is exactly what your CI pipeline will bump later.

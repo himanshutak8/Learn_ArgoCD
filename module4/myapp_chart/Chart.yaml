@@ -1,0 +1,6 @@
+apiVersion: v2
+name: mychart
+description: A tiny nginx chart to learn Helm-in-ArgoCD (Module 4)
+type: application
+version: 0.1.0          # CHART version — bump when the chart's templates change
+appVersion: "1.27.0"    # informational: the app (nginx) version shipped
